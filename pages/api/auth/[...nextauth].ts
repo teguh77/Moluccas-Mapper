@@ -15,7 +15,7 @@ const authOptions: NextAuthOptions = {
           password: string;
         };
 
-        if (email !== process.env.EMAIL || password !== process.env.PASSWORD) {
+        if (email !== 'admin@customs.go.id' || password !== '1234') {
           throw new Error('Invalid Credentials');
         }
 

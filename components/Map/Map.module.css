@@ -1,0 +1,28 @@
+.body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  height: 40rem;
+  align-items: center;
+}
+.empty-state {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.empty-msg {
+  margin: 1rem 0;
+  text-align: center;
+}
+.loading .skeleton-chart-loader {
+  animation: chart-animation 1s linear infinite;
+}
+
+@keyframes chart-animation {
+  from {
+    transform: translate(412px, 0);
+  }
+}

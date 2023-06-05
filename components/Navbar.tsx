@@ -12,13 +12,10 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Link from './Link';
 import TravelExploreIcon from '@mui/icons-material/TravelExplore';
-import Image from 'next/image';
-import brand from '../public/images/shield.svg';
 
 const pages = [
   { title: 'Home', link: '/' },

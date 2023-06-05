@@ -17,7 +17,8 @@ import OffenseDetail from './OffenseDetail';
 import OffenseConfirm from './OffenseConfirm';
 import { useOffense } from '@/lib/documents/offenseDoc';
 import { CustomPaginationTable } from '../TablePagination';
-import { Box, Paper, TableFooter } from '@mui/material';
+import TableFooter from '@mui/material/TableFooter';
+import Paper from '@mui/material/Paper';
 
 interface IOffense {
   _id: string;

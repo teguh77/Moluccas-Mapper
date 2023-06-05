@@ -12,7 +12,7 @@ import {
 import { ThemeProvider } from '@mui/material';
 import theme from '@/styles/theme';
 import { useDashboardData } from '@/lib/documents/dashboardDoc';
-import CustomTooltip from '../CustomToolTip';
+import CustomTooltip from '../CustomTooltip';
 
 const LocationDetailChart = () => {
   const { data } = useDashboardData();

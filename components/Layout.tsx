@@ -1,7 +1,7 @@
 import Container from '@mui/material/Container';
 import Navbar from './Navbar';
 import Footer from './Footer';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 type Props = {
   children?: React.ReactNode;

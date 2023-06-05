@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { mongooseConnect } from '@/lib/db';
 import Maluku from '@/models/maluku';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -11,7 +11,7 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        await db.connect();
+        await mongooseConnect();
         const maluku = await Maluku.find({});
 
         const populatedMaluku = await Promise.all(
@@ -26,11 +26,11 @@ export default async function handler(
             };
           }),
         );
-        await db.disconnect();
+        // await db.disconnect();
         res.json(populatedMaluku);
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;

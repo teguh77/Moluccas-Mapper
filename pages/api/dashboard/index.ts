@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { mongooseConnect } from '@/lib/db';
 import Maluku from '@/models/maluku';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -19,16 +19,17 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        await db.connect();
-        const maluku = await Maluku.find({}).populate('offense').exec();
+        await mongooseConnect();
+        const maluku = await Maluku.find({});
 
         const populatedMaluku = await Promise.all(
           maluku.map(async (doc) => {
+            const offenseCount = await doc.populate('offense');
             return {
               _id: doc._id,
               provinsi: doc.properties.provinsi,
               kota: doc.properties.kota,
-              offenseCount: doc.offenseCount,
+              offenseCount: offenseCount.offense.length,
             };
           }),
         );
@@ -38,11 +39,11 @@ export default async function handler(
         const topFive = populatedMaluku.slice(0, 5);
         const randomizedTopFive = shuffleArray(topFive);
 
-        await db.disconnect();
+        // await db.disconnect();
         res.json(randomizedTopFive);
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;

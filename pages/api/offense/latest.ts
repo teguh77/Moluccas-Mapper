@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { mongooseConnect } from '@/lib/db';
 import Offense from '@/models/offense';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -11,13 +11,13 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        await db.connect();
+        await mongooseConnect();
         const offense = await Offense.find({}).sort({ createdAt: -1 }).limit(3);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(200).json(offense);
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;

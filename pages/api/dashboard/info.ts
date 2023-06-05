@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { mongooseConnect } from '@/lib/db';
 import Maluku from '@/models/maluku';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -18,14 +18,15 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        await db.connect();
-        const maluku = await Maluku.find({}).populate('offense').exec();
+        await mongooseConnect();
+        const maluku = await Maluku.find({});
 
         const populatedMaluku = await Promise.all(
           maluku.map(async (doc) => {
+            const offenseCount = await doc.populate('offense');
             return {
               _id: doc._id,
-              offenseCount: doc.offenseCount,
+              offenseCount: offenseCount.offense.length,
             };
           }),
         );
@@ -40,7 +41,7 @@ export default async function handler(
           (doc) => doc.offenseCount > 1,
         ).length;
 
-        await db.disconnect();
+        // await db.disconnect();
         res.json({
           aman: formatPercentage(
             calculatePercentage(amanLength, maluku.length),
@@ -54,7 +55,7 @@ export default async function handler(
         });
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;

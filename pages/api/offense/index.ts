@@ -1,4 +1,4 @@
-import db from '@/lib/db';
+import { mongooseConnect } from '@/lib/db';
 import Maluku from '@/models/maluku';
 import Offense from '@/models/offense';
 import type { NextApiRequest, NextApiResponse } from 'next';
@@ -21,7 +21,7 @@ export default async function handler(
   switch (method) {
     case 'POST':
       try {
-        await db.connect();
+        await mongooseConnect();
         const {
           area,
           nama,
@@ -34,7 +34,7 @@ export default async function handler(
         const maluku = await Maluku.findOne({ _id: area });
 
         if (!maluku) {
-          await db.disconnect();
+          // await db.disconnect();
           res.status(500).json({ message: 'referense error' });
           return;
         }
@@ -53,23 +53,23 @@ export default async function handler(
 
         maluku.offense.push(offense._id);
         await maluku.save();
-        await db.disconnect();
+        // await db.disconnect();
         res.status(200).json({ message: 'offense recorded' });
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;
     case 'GET':
       try {
-        await db.connect();
+        await mongooseConnect();
         const offense = await Offense.find({});
-        await db.disconnect();
+        // await db.disconnect();
         res.status(200).json(offense);
       } catch (error) {
         console.log(error);
-        await db.disconnect();
+        // await db.disconnect();
         res.status(500).json({ message: error });
       }
       break;

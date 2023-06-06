@@ -4,10 +4,11 @@ import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import MapIcon from '@mui/icons-material/Map';
 import Head from 'next/head';
+import { Box } from '@mui/material';
 
 const MapPage = () => {
   return (
-    <>
+    <Box sx={{ paddingX: { xs: '1rem', md: 0 } }}>
       <Head>
         <title>Moluccas Mapper | Map</title>
       </Head>
@@ -19,7 +20,7 @@ const MapPage = () => {
         />
         <Map />
       </div>
-    </>
+    </Box>
   );
 };
 

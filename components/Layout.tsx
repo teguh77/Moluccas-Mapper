@@ -20,10 +20,7 @@ export default function Layout({ children }: Props) {
     >
       <Navbar />
       <main style={{ width: '100%', position: 'relative', paddingTop: '3rem' }}>
-        <Container
-          maxWidth="lg"
-          sx={{ paddingTop: '4rem', paddingBottom: '4rem' }}
-        >
+        <Container maxWidth="lg" sx={{ paddingY: '4rem', paddingX: 0 }}>
           {children}
         </Container>
         <Footer />

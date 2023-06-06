@@ -42,7 +42,7 @@ const Data = () => {
 
   if (status === 'authenticated')
     return (
-      <Box>
+      <Box sx={{ paddingX: { xs: '1rem', md: 0 } }}>
         <Head>
           <title>Moluccas Mapper | Database</title>
         </Head>

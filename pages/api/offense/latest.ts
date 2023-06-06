@@ -1,4 +1,4 @@
-import { mongooseConnect } from '@/lib/db';
+import dbConnect from '@/lib/dbConnect';
 import Offense from '@/models/offense';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -8,7 +8,7 @@ export default async function handler(
 ) {
   const { method } = req;
 
-  await mongooseConnect();
+  await dbConnect();
   switch (method) {
     case 'GET':
       try {

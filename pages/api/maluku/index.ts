@@ -1,4 +1,4 @@
-import { mongooseConnect } from '@/lib/db';
+import dbConnect from '@/lib/dbConnect';
 import Maluku from '@/models/maluku';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { method } = req;
-  await mongooseConnect();
+  await dbConnect();
 
   switch (method) {
     case 'GET':

@@ -17,11 +17,11 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { method, body, query } = req;
+  await mongooseConnect();
 
   switch (method) {
     case 'PUT':
       try {
-        await mongooseConnect();
         const {
           area,
           nama,
@@ -58,7 +58,6 @@ export default async function handler(
       break;
     case 'DELETE':
       try {
-        await mongooseConnect();
         await Offense.deleteOne({ _id: query.id });
 
         res.status(200).json({ message: 'offense deleted' });

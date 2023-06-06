@@ -177,12 +177,11 @@ export default async function handler(
   res: NextApiResponse,
 ) {
   const { method } = req;
+  await mongooseConnect();
 
   switch (method) {
     case 'GET':
       try {
-        await mongooseConnect();
-
         for (const offense of offenses) {
           const maluku = await Maluku.findOne({ _id: offense.area });
 

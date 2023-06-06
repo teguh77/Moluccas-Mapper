@@ -16,10 +16,11 @@ export default async function handler(
 ) {
   const { method } = req;
 
+  await mongooseConnect();
+
   switch (method) {
     case 'GET':
       try {
-        await mongooseConnect();
         const maluku = await Maluku.find({});
 
         const populatedMaluku = await Promise.all(

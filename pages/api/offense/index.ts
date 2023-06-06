@@ -18,10 +18,11 @@ export default async function handler(
 ) {
   const { method, body } = req;
 
+  await mongooseConnect();
+
   switch (method) {
     case 'POST':
       try {
-        await mongooseConnect();
         const {
           area,
           nama,
@@ -62,7 +63,6 @@ export default async function handler(
       break;
     case 'GET':
       try {
-        await mongooseConnect();
         const offense = await Offense.find({});
 
         res.status(200).json(offense);

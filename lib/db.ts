@@ -51,7 +51,11 @@ export function mongooseConnect() {
   if (mongoose.connection.readyState === 1) {
     return mongoose.connection.asPromise();
   } else {
-    const uri = process.env.MONGO_URI;
-    return mongoose.connect(uri!);
+    try {
+      const uri = process.env.MONGO_URI;
+      return mongoose.connect(uri!);
+    } catch (err) {
+      return Promise.reject(err);
+    }
   }
 }

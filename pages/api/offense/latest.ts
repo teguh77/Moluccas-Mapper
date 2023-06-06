@@ -8,10 +8,10 @@ export default async function handler(
 ) {
   const { method } = req;
 
+  await mongooseConnect();
   switch (method) {
     case 'GET':
       try {
-        await mongooseConnect();
         const offense = await Offense.find({}).sort({ createdAt: -1 }).limit(3);
 
         res.status(200).json(offense);

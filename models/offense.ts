@@ -10,7 +10,7 @@ interface IOffense {
   area?: Types.ObjectId;
 }
 
-const offenseSchema: Schema<IOffense> = new Schema<IOffense>(
+const OffenseSchema: Schema<IOffense> = new Schema<IOffense>(
   {
     nama: { type: String, required: true },
     pelanggaran: { type: String, required: true },
@@ -23,6 +23,6 @@ const offenseSchema: Schema<IOffense> = new Schema<IOffense>(
   { timestamps: true },
 );
 
-const Offense = models.Offense || model<IOffense>('Offense', offenseSchema);
+const Offense = models.Offense || model<IOffense>('Offense', OffenseSchema);
 
 export default Offense;

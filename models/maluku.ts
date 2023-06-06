@@ -15,7 +15,7 @@ interface MalukuDocument {
   offense: Schema.Types.ObjectId[];
 }
 
-const malukuSchema = new Schema<MalukuDocument>({
+const MalukuSchema = new Schema<MalukuDocument>({
   type: { type: String, required: true },
   geometry: {
     type: { type: String, required: true },
@@ -28,12 +28,12 @@ const malukuSchema = new Schema<MalukuDocument>({
   offense: [{ type: Types.ObjectId, ref: 'Offense' }],
 });
 
-malukuSchema.virtual('offenseCount').get(function (this: MalukuDocument) {
+MalukuSchema.virtual('offenseCount').get(function (this: MalukuDocument) {
   return this.offense?.length;
 });
 
-malukuSchema.set('toJSON', { virtuals: true });
+MalukuSchema.set('toJSON', { virtuals: true });
 
-const Maluku = models.Maluku || model<MalukuDocument>('Maluku', malukuSchema);
+const Maluku = models.Maluku || model<MalukuDocument>('Maluku', MalukuSchema);
 
 export default Maluku;

@@ -23,23 +23,23 @@ export default async function handler(
     case 'GET':
       try {
         await Offense.find({});
-        const maluku = await Maluku.find({}).populate('offense').exec();
+        const maluku = await Maluku.find({});
 
-        // const populatedMaluku = await Promise.all(
-        //   maluku.map(async (doc) => {
-        //     const offenseCount = await doc.populate('offense');
-        //     return {
-        //       _id: doc._id,
-        //       provinsi: doc.properties.provinsi,
-        //       kota: doc.properties.kota,
-        //       offenseCount: offenseCount.offense.length,
-        //     };
-        //   }),
-        // );
+        const populatedMaluku = await Promise.all(
+          maluku.map(async (doc) => {
+            const offenseCount = await doc.populate('offense');
+            return {
+              _id: doc._id,
+              provinsi: doc.properties.provinsi,
+              kota: doc.properties.kota,
+              offenseCount: offenseCount.offense.length,
+            };
+          }),
+        );
 
-        maluku.sort((a, b) => b.offenseCount - a.offenseCount);
+        populatedMaluku.sort((a, b) => b.offenseCount - a.offenseCount);
 
-        const topFive = maluku.slice(0, 5);
+        const topFive = populatedMaluku.slice(0, 5);
         const randomizedTopFive = shuffleArray(topFive);
 
         res.json(randomizedTopFive);
@@ -50,6 +50,7 @@ export default async function handler(
       }
       break;
     default:
+      res.status(405).json({ message: 'Method Not Allowed' });
       break;
   }
 }

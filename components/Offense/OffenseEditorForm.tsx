@@ -134,8 +134,8 @@ const OffenseEditorForm = ({ closeModal, dataToEdit }: Props) => {
           item
           xs={12}
           sm={6}
-          style={{
-            paddingRight: '.5rem',
+          sx={{
+            paddingRight: { sm: '.5rem' },
           }}
         >
           <TextField
@@ -165,8 +165,8 @@ const OffenseEditorForm = ({ closeModal, dataToEdit }: Props) => {
           item
           xs={12}
           sm={6}
-          style={{
-            paddingLeft: '.5rem',
+          sx={{
+            paddingLeft: { sm: '.5rem' },
           }}
         >
           <TextField
@@ -196,7 +196,7 @@ const OffenseEditorForm = ({ closeModal, dataToEdit }: Props) => {
           xs={12}
           sm={6}
           sx={{
-            paddingRight: '.5rem',
+            paddingRight: { sm: '.5rem' },
           }}
         >
           <TextField
@@ -221,7 +221,7 @@ const OffenseEditorForm = ({ closeModal, dataToEdit }: Props) => {
           xs={12}
           sm={6}
           sx={{
-            paddingLeft: '.5rem',
+            paddingLeft: { sm: '.5rem' },
           }}
         >
           <TextField

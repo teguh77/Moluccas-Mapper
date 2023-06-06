@@ -16,6 +16,7 @@ import Skeleton from '@mui/material/Skeleton';
 import TextField from '@mui/material/TextField';
 import { useOffense } from '@/lib/documents/offenseDoc';
 import Head from 'next/head';
+import Typography from '@mui/material/Typography';
 
 const Data = () => {
   const { data: offenseData, isLoading } = useOffense();
@@ -159,8 +160,22 @@ const Data = () => {
                         <NoteAdd />
                       </Button>
                     }
-                    title="Tabel Catatan Pelanggaran Perusahaan "
-                    subheader="Wilayah Maluku dan Maluku Utara"
+                    title={
+                      <Typography
+                        variant="body2"
+                        sx={{ fontSize: { xs: 12, sm: 14 } }}
+                      >
+                        Tabel Catatan Pelanggaran Perusahaan
+                      </Typography>
+                    }
+                    subheader={
+                      <Typography
+                        variant="body2"
+                        sx={{ fontSize: { xs: 11, sm: 14 }, color: '#BABABD' }}
+                      >
+                        Wilayah Maluku dan Maluku Utara
+                      </Typography>
+                    }
                   ></CardHeader>
                   <CardContent>
                     <div
@@ -173,7 +188,7 @@ const Data = () => {
                       }}
                     >
                       <Autocomplete
-                        sx={{ width: { xs: '20rem', sm: '25rem' } }}
+                        sx={{ width: { xs: '18.8rem', sm: '25rem' } }}
                         id="search"
                         onChange={(e, value: string | null) =>
                           setSearchValue(value)

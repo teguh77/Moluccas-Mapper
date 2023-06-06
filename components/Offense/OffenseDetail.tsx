@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import ListAlt from '@mui/icons-material/ListAlt';
 import IconButton from '@mui/material/IconButton';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import Box from '@mui/material/Box';
 
 interface IOffense {
   _id: string;
@@ -30,7 +31,8 @@ const OffenseDetail = ({ closeModal, dataToEdit }: Props) => {
         top: 0,
         right: 0,
         left: 0,
-        height: '100vh',
+        bottom: 0,
+        height: '100%',
         position: 'absolute',
         width: '100%',
         zIndex: 1200,
@@ -41,10 +43,10 @@ const OffenseDetail = ({ closeModal, dataToEdit }: Props) => {
       }}
       className="fade_animation"
     >
-      <div
-        style={{
-          width: '40rem',
-          height: '41rem',
+      <Box
+        sx={{
+          width: { xs: '23rem', sm: '40rem' },
+          height: { xs: '41rem' },
           borderRadius: '10px',
           backgroundColor: '#171721',
           overflow: 'auto',
@@ -64,10 +66,10 @@ const OffenseDetail = ({ closeModal, dataToEdit }: Props) => {
           }
         />
         <CardContent
-          style={{
+          sx={{
             display: 'flex',
             flexDirection: 'column',
-            height: 500,
+            height: { xs: 710, sm: 500 },
             backgroundColor: '#171721',
             padding: '2rem ',
           }}
@@ -203,7 +205,7 @@ const OffenseDetail = ({ closeModal, dataToEdit }: Props) => {
             </Grid>
           </div>
         </CardContent>
-      </div>
+      </Box>
     </div>
   );
 };

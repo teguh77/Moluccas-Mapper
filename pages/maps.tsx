@@ -4,7 +4,7 @@ import CardHeader from '@mui/material/CardHeader';
 import Typography from '@mui/material/Typography';
 import MapIcon from '@mui/icons-material/Map';
 import Head from 'next/head';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 const MapPage = () => {
   return (

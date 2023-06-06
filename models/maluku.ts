@@ -28,6 +28,7 @@ const MalukuSchema = new Schema<MalukuDocument>({
   offense: [{ type: Types.ObjectId, ref: 'Offense' }],
 });
 
+// Virtual tidak digunakan saat ini
 MalukuSchema.virtual('offenseCount').get(function (this: MalukuDocument) {
   return this.offense?.length;
 });

@@ -20,25 +20,27 @@ export default async function handler(
     case 'GET':
       try {
         await Offense.find({});
-        const maluku = await Maluku.find({}).populate('offense').exec();
+        const maluku = await Maluku.find({});
 
-        // const populatedMaluku = await Promise.all(
-        //   maluku.map(async (doc) => {
-        //     const offenseCount = await doc.populate('offense');
-        //     return {
-        //       _id: doc._id,
-        //       offenseCount: offenseCount.offense.length,
-        //     };
-        //   }),
-        // );
+        const populatedMaluku = await Promise.all(
+          maluku.map(async (doc) => {
+            const offenseCount = await doc.populate('offense');
+            return {
+              _id: doc._id,
+              offenseCount: offenseCount.offense.length,
+            };
+          }),
+        );
 
-        const amanLength = maluku.filter(
+        const amanLength = populatedMaluku.filter(
           (doc) => doc.offenseCount === 0,
         ).length;
-        const waspadaLength = maluku.filter(
+        const waspadaLength = populatedMaluku.filter(
           (doc) => doc.offenseCount === 1,
         ).length;
-        const rawanLength = maluku.filter((doc) => doc.offenseCount > 1).length;
+        const rawanLength = populatedMaluku.filter(
+          (doc) => doc.offenseCount > 1,
+        ).length;
 
         res.json({
           aman: formatPercentage(

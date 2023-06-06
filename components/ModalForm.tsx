@@ -4,6 +4,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import React from 'react';
 import OffenseCreatorForm from './Offense/OffenseCreatorForm';
 import OffenseEditorForm from './Offense/OffenseEditorForm';
+import Box from '@mui/material/Box';
 
 interface IOffense {
   _id: string;
@@ -24,12 +25,13 @@ interface Props {
 
 const ModalForm = ({ closeModal, type, dataToEdit }: Props) => {
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         top: 0,
         right: 0,
         left: 0,
-        height: '100vh',
+        bottom: 0,
+        height: '100%',
         position: 'absolute',
         width: '100%',
         zIndex: 1200,
@@ -40,9 +42,9 @@ const ModalForm = ({ closeModal, type, dataToEdit }: Props) => {
       }}
       className="fade_animation"
     >
-      <div
-        style={{
-          width: '40rem',
+      <Box
+        sx={{
+          width: { xs: '24rem', sm: '40rem' },
           maxHeight: 600,
           borderRadius: '10px',
           backgroundColor: '#171721',
@@ -54,8 +56,7 @@ const ModalForm = ({ closeModal, type, dataToEdit }: Props) => {
             <ListAltIcon color="primary" style={{ width: 30, height: 30 }} />
           }
           sx={{ padding: '2.5rem', paddingBottom: 0 }}
-          title="Data"
-          subheader="Data detil"
+          title={type == 'creator' ? 'Create' : 'Edit'}
         />
         <CardContent style={{ display: 'flex', height: 500 }}>
           {type == 'creator' ? (
@@ -67,8 +68,8 @@ const ModalForm = ({ closeModal, type, dataToEdit }: Props) => {
             />
           )}
         </CardContent>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

@@ -12,22 +12,22 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        const maluku = await Maluku.find({});
+        const maluku = await Maluku.find({}).populate('offense').exec();
 
-        const populatedMaluku = await Promise.all(
-          maluku.map(async (doc) => {
-            const offenseCount = await doc.populate('offense');
-            return {
-              _id: doc._id,
-              type: doc.type,
-              geometry: doc.geometry,
-              properties: doc.properties,
-              offenseCount: offenseCount.offense.length,
-            };
-          }),
-        );
+        // const populatedMaluku = await Promise.all(
+        //   maluku.map(async (doc) => {
+        //     const offenseCount = await doc.populate('offense');
+        //     return {
+        //       _id: doc._id,
+        //       type: doc.type,
+        //       geometry: doc.geometry,
+        //       properties: doc.properties,
+        //       offenseCount: offenseCount.offense.length,
+        //     };
+        //   }),
+        // );
 
-        res.json(populatedMaluku);
+        res.json(maluku);
       } catch (error) {
         console.log(error);
 

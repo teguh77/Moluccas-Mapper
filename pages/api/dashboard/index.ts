@@ -21,23 +21,23 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        const maluku = await Maluku.find({});
+        const maluku = await Maluku.find({}).populate('offense').exec();
 
-        const populatedMaluku = await Promise.all(
-          maluku.map(async (doc) => {
-            const offenseCount = await doc.populate('offense');
-            return {
-              _id: doc._id,
-              provinsi: doc.properties.provinsi,
-              kota: doc.properties.kota,
-              offenseCount: offenseCount.offense.length,
-            };
-          }),
-        );
+        // const populatedMaluku = await Promise.all(
+        //   maluku.map(async (doc) => {
+        //     const offenseCount = await doc.populate('offense');
+        //     return {
+        //       _id: doc._id,
+        //       provinsi: doc.properties.provinsi,
+        //       kota: doc.properties.kota,
+        //       offenseCount: offenseCount.offense.length,
+        //     };
+        //   }),
+        // );
 
-        populatedMaluku.sort((a, b) => b.offenseCount - a.offenseCount);
+        maluku.sort((a, b) => b.offenseCount - a.offenseCount);
 
-        const topFive = populatedMaluku.slice(0, 5);
+        const topFive = maluku.slice(0, 5);
         const randomizedTopFive = shuffleArray(topFive);
 
         res.json(randomizedTopFive);

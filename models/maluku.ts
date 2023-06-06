@@ -28,11 +28,11 @@ const malukuSchema = new Schema<MalukuDocument>({
   offense: [{ type: Types.ObjectId, ref: 'Offense' }],
 });
 
-// malukuSchema.virtual('offenseCount').get(function (this: MalukuDocument) {
-//   return this.offense?.length;
-// });
+malukuSchema.virtual('offenseCount').get(function (this: MalukuDocument) {
+  return this.offense?.length;
+});
 
-// malukuSchema.set('toJSON', { virtuals: true });
+malukuSchema.set('toJSON', { virtuals: true });
 
 const Maluku = models.Maluku || model<MalukuDocument>('Maluku', malukuSchema);
 

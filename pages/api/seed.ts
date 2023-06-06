@@ -187,7 +187,6 @@ export default async function handler(
           const maluku = await Maluku.findOne({ _id: offense.area });
 
           if (!maluku) {
-            // await db.disconnect();
             res.status(500).json({ message: 'reference error' });
             return;
           }
@@ -207,11 +206,10 @@ export default async function handler(
           await maluku.save();
         }
 
-        // await db.disconnect();
         res.status(200).json({ message: 'offenses recorded' });
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

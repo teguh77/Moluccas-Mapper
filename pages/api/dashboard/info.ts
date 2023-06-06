@@ -41,7 +41,6 @@ export default async function handler(
           (doc) => doc.offenseCount > 1,
         ).length;
 
-        // await db.disconnect();
         res.json({
           aman: formatPercentage(
             calculatePercentage(amanLength, maluku.length),
@@ -55,7 +54,7 @@ export default async function handler(
         });
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

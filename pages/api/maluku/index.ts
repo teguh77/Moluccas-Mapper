@@ -26,11 +26,11 @@ export default async function handler(
             };
           }),
         );
-        // await db.disconnect();
+
         res.json(populatedMaluku);
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

@@ -34,7 +34,6 @@ export default async function handler(
         const maluku = await Maluku.findOne({ _id: area });
 
         if (!maluku) {
-          // await db.disconnect();
           res.status(500).json({ message: 'referense error' });
           return;
         }
@@ -51,10 +50,9 @@ export default async function handler(
             area,
           },
         );
-        // await db.disconnect();
+
         res.status(200).json({ message: 'offense updated' });
       } catch (err) {
-        // await db.disconnect();
         res.status(500).json({ message: err });
       }
       break;
@@ -62,11 +60,11 @@ export default async function handler(
       try {
         await mongooseConnect();
         await Offense.deleteOne({ _id: query.id });
-        // await db.disconnect();
+
         res.status(200).json({ message: 'offense deleted' });
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

@@ -13,11 +13,11 @@ export default async function handler(
       try {
         await mongooseConnect();
         const offense = await Offense.find({}).sort({ createdAt: -1 }).limit(3);
-        // await db.disconnect();
+
         res.status(200).json(offense);
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

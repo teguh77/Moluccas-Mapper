@@ -19,11 +19,11 @@ export default async function handler(
           .where('properties.kota')
           .exists(true)
           .exec();
-        // await db.disconnect();
+
         res.json(malukuData);
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

@@ -34,7 +34,6 @@ export default async function handler(
         const maluku = await Maluku.findOne({ _id: area });
 
         if (!maluku) {
-          // await db.disconnect();
           res.status(500).json({ message: 'referense error' });
           return;
         }
@@ -53,11 +52,11 @@ export default async function handler(
 
         maluku.offense.push(offense._id);
         await maluku.save();
-        // await db.disconnect();
+
         res.status(200).json({ message: 'offense recorded' });
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;
@@ -65,11 +64,11 @@ export default async function handler(
       try {
         await mongooseConnect();
         const offense = await Offense.find({});
-        // await db.disconnect();
+
         res.status(200).json(offense);
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

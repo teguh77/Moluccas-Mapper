@@ -39,11 +39,10 @@ export default async function handler(
         const topFive = populatedMaluku.slice(0, 5);
         const randomizedTopFive = shuffleArray(topFive);
 
-        // await db.disconnect();
         res.json(randomizedTopFive);
       } catch (error) {
         console.log(error);
-        // await db.disconnect();
+
         res.status(500).json({ message: error });
       }
       break;

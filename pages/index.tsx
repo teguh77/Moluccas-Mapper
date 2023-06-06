@@ -43,20 +43,28 @@ const Home = () => {
           <Box
             sx={{
               gridColumn: { xs: '1/15', md: '1/10' },
-              gridTemplateRows: {
-                xs: 'repeat(2, minmax(0, auto))',
-                md: 'unset',
-              },
-              gridTemplateColumns: 'repeat(12, minmax(0, 1fr))',
-              gridRow: { sm: '1/2', md: 'unset' },
-              display: 'grid',
-              gap: '2rem',
-              paddingX: { xs: '1rem', sm: 0 },
+              // gridTemplateRows: {
+              //   xs: 'repeat(2, minmax(0, auto))',
+              //   md: 'unset',
+              // },
+              gridTemplateColumns: { sm: 'repeat(12, minmax(0, 1fr))' },
+              // gridRow: { sm: '1/2', md: 'unset' },
+              // display: 'grid',
+              gap: { sm: '2rem' },
+              display: { xs: 'flex', sm: 'grid' },
+              flexDirection: { xs: 'column' },
+              rowGap: { xs: '2rem', md: 0 },
+              paddingX: { xs: '1rem', md: 0 },
             }}
           >
             {isLoadingInfo || !dashboardInfo ? (
               <>
-                <div style={{ gridColumn: '1/5' }}>
+                <Box
+                  sx={{
+                    gridColumn: { xs: '1/10', sm: '1/7', md: '1/5' },
+                    gridRow: { sm: '1/2', md: 'unset' },
+                  }}
+                >
                   <Skeleton
                     variant="rounded"
                     animation="wave"
@@ -68,8 +76,13 @@ const Home = () => {
                     sx={{ marginTop: '5px' }}
                   />
                   <Skeleton animation="wave" />
-                </div>
-                <div style={{ gridColumn: '5/9' }}>
+                </Box>
+                <Box
+                  sx={{
+                    gridColumn: { xs: '1/13', sm: '7/13', md: '5/9' },
+                    gridRow: { sm: '1/2', md: 'unset' },
+                  }}
+                >
                   <Skeleton
                     variant="rounded"
                     animation="wave"
@@ -81,8 +94,13 @@ const Home = () => {
                     sx={{ marginTop: '5px' }}
                   />
                   <Skeleton animation="wave" />
-                </div>
-                <div style={{ gridColumn: '9/13' }}>
+                </Box>
+                <Box
+                  sx={{
+                    gridColumn: { xs: '1/13', sm: '1/7', md: '9/13' },
+                    gridRow: { sm: '2/3', md: 'unset' },
+                  }}
+                >
                   <Skeleton
                     variant="rounded"
                     animation="wave"
@@ -94,7 +112,7 @@ const Home = () => {
                     sx={{ marginTop: '5px' }}
                   />
                   <Skeleton animation="wave" />
-                </div>
+                </Box>
               </>
             ) : (
               <>
@@ -142,7 +160,7 @@ const Home = () => {
           </Box>
           <Box
             sx={{
-              gridColumn: { xs: '1/15', sm: '1/15', md: '10/15' },
+              gridColumn: { xs: '1/15', md: '10/15' },
               gridRow: { xs: 'auto', sm: '3/4', md: '1/3' },
               padding: { xs: '0 1rem', md: 0 },
             }}
@@ -150,7 +168,7 @@ const Home = () => {
             <div
               style={{
                 borderRadius: 15,
-                padding: '1rem 1.5rem',
+                padding: '1rem',
                 backgroundColor: '#171721',
               }}
             >
@@ -167,17 +185,24 @@ const Home = () => {
                 <Divider />
                 <Paper elevation={0}>
                   {isLoadingDashboardData || !dashboardData ? (
-                    <div
-                      style={{
-                        height: '310px',
-                        width: '300px',
+                    <Box
+                      sx={{
+                        height: { md: 310, xs: '19rem', sm: '36.5rem' },
+                        width: { md: 328, xs: '19rem', sm: '36.5rem' },
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
+                        marginTop: '1rem',
                       }}
                     >
-                      <Skeleton variant="circular" width={200} height={200} />
-                    </div>
+                      <Skeleton
+                        variant="circular"
+                        sx={{
+                          height: { md: 200, xs: '60%', sm: '40%' },
+                          width: { md: 200, xs: '60%', sm: '40%' },
+                        }}
+                      />
+                    </Box>
                   ) : (
                     <PieData />
                   )}
@@ -187,7 +212,7 @@ const Home = () => {
           </Box>
           <Box
             sx={{
-              gridColumn: { xs: '1/15', sm: '1/15', md: '1/10' },
+              gridColumn: { xs: '1/15', md: '1/10' },
               gridRow: { xs: 'auto', sm: '2/3', md: '2/5' },
               padding: { xs: '0 1rem', md: 0 },
             }}
@@ -213,14 +238,21 @@ const Home = () => {
               <CardContent>
                 <Divider sx={{ marginBottom: '2rem' }} />
                 <Paper
-                  style={{
-                    padding: '0 1rem 1rem 1rem',
+                  sx={{
+                    padding: { xs: '0 1rem 1rem 0', md: '0 1rem 1rem 1rem' },
                     height: '100%',
+                    width: '100%',
                   }}
                   elevation={0}
                 >
                   {isLoadingDashboardData || !dashboardData ? (
-                    <Skeleton variant="rounded" width={630} height={450} />
+                    <Skeleton
+                      variant="rounded"
+                      sx={{
+                        width: { xs: '100%', md: 630 },
+                        height: { xs: 450, md: 450 },
+                      }}
+                    />
                   ) : (
                     <LineChart />
                   )}
@@ -230,7 +262,7 @@ const Home = () => {
           </Box>
           <Box
             sx={{
-              gridColumn: { xs: '1/15', sm: '1/15', md: '10/15' },
+              gridColumn: { xs: '1/15', md: '10/15' },
               gridRow: { xs: 'auto', sm: '4/5', md: '3/5' },
               padding: { xs: '0 1rem', md: 0 },
             }}

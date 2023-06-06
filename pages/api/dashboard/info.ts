@@ -1,5 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import Maluku from '@/models/maluku';
+import Offense from '@/models/offense';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 function calculatePercentage(num1: number, num2: number) {
@@ -18,6 +19,7 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
+        await Offense.find({});
         const maluku = await Maluku.find({}).populate('offense').exec();
 
         // const populatedMaluku = await Promise.all(

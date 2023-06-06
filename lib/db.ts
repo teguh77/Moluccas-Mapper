@@ -3,16 +3,16 @@ import mongoose from 'mongoose';
 const MONGO_URI = process.env.MONGO_URI;
 
 interface ConnectionState {
-  isConnected?: number | boolean;
+  isConnected?: number;
 }
 
 const connectionState: ConnectionState = {};
 
 export async function mongooseConnect(): Promise<void> {
-  if (connectionState.isConnected) {
-    console.log('Already connected');
-    return;
-  }
+  // if (connectionState.isConnected) {
+  //   console.log('Already connected');
+  //   return;
+  // }
 
   try {
     if (mongoose.connections.length > 0) {

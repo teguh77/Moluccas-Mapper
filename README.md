@@ -1,5 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+
 ## Getting Started
 
 Pertama, install terlebih dahulu 'dependencies' nya:
@@ -8,7 +9,7 @@ Pertama, install terlebih dahulu 'dependencies' nya:
 npm i
 ```
 
-Kedua, buat file .env.local untuk menyimpan 'environment variable', lihat referensi .env.example
+Kedua, buat file .env.local untuk menyimpan 'environment variable', lihat referensi .env.example<br><br>
 
 Setelah itu, jalankan program:
 

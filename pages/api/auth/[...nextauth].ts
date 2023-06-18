@@ -15,11 +15,11 @@ const authOptions: NextAuthOptions = {
           password: string;
         };
 
-        if (email !== 'admin@customs.go.id' || password !== '1234') {
+        if (email !== process.env.EMAIL || password !== process.env.PASSWORD) {
           throw new Error('Invalid Credentials');
         }
 
-        return { id: '5758', name: 'admin', email: 'admin@customs.go.id' };
+        return { id: '5758', name: 'admin', email: process.env.EMAIL };
       },
     }),
   ],

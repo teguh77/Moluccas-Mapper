@@ -17,13 +17,6 @@ Setelah itu, jalankan program:
 npm run dev
 ```
 
-Buka [http://localhost:3000](http://localhost:3000) dengan browser untuk melihat hasilnya.
-
-Untuk melakukan edit halaman dapat dilakukan pada `pages/` direktori. Halaman akan otomatis update ketika kode disimpan.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) dapat diakses pada [http://localhost:3000/api/hello](http://localhost:3000/api/hello). endpoint ini dapat di edit pada `pages/api/` direktori.
-
-`pages/api` direktori dipetakan ke `/api/*`. Semua file dalam direktori API diperlakukan sebagai API [API routes](https://nextjs.org/docs/api-routes/introduction) bukan merupakan komponen frontend.
 
 ## Learn More
 
